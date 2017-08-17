@@ -3,11 +3,12 @@
 
 #include <map>
 #include <string>
+#include <boost/filesystem.hpp>
 
 class Cli {
 
 private:
-  static std::string parse_path(const std::map<std::string, std::string> & option_values);
+  static boost::filesystem::path parse_path(const std::map<std::string, std::string> & option_values);
   static std::string parse_user(const std::map<std::string, std::string> & option_values);
 
 public:
