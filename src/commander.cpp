@@ -72,18 +72,10 @@ void Commander::run(int argc, const char * argv[]) {
     print_help();
   } else {
     string first_arg = argv[1];
-    if (first_arg.find("--") == 0) {
-      if (first_arg == "--help") {
+    if (first_arg.find("-") == 0) {
+      if (first_arg == "-h" || first_arg == "--help") {
         print_help();
-      } else if (first_arg == "--version") {
-        print_version();
-      } else {
-        print_option_error(first_arg);
-      }
-    } else if (first_arg.find("-") == 0) {
-      if (first_arg == "-h") {
-        print_help();
-      } else if (first_arg == "-V") {
+      } else if (first_arg == "-V" || first_arg == "--version") {
         print_version();
       } else {
         print_option_error(first_arg);
