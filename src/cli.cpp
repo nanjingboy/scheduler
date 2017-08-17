@@ -29,17 +29,14 @@ string Cli::parse_user(const map<string, string> & option_values) {
 void Cli::init(const map<string, string> & option_values) {
   filesystem::path path = parse_path(option_values);
   string path_string = filesystem::weakly_canonical(path).string();
-
   if (filesystem::is_directory(path)) {
     cout << "Initial file can't be directory: " << path_string << endl;
     exit(1);
   }
-
   if (filesystem::exists(path)) {
     cout << "Initial file already exists: " << path_string << endl;
     exit(1);
   }
-
   filesystem::path parent_path = path.parent_path();
   if (!filesystem::is_directory(parent_path)) {
     cout << "Directory does not exist: " << filesystem::weakly_canonical(parent_path).string() << endl;

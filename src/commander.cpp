@@ -4,9 +4,8 @@
 
 using namespace std;
 
-Commander::Commander(const string & name, const string & version):
-  m_name(name),
-  m_version(version) {
+Commander::Commander(const string & name, const string & version)
+  :m_name(name), m_version(version) {
 }
 
 int Commander::find_option(const string & name) {
