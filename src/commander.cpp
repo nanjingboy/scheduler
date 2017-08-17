@@ -33,18 +33,15 @@ int Commander::find_command(const string & name) {
 void Commander::print_help() {
   cout << endl << "Usage: " << m_name << " [command] [option]" << endl << endl;
   cout << "Options:" << endl << endl;
-  size_t option_count = m_options.size();
-  for (size_t index = 0; index < option_count; index++) {
-    Option option = m_options[index];
+  for (Option option: m_options) {
     cout << "  " << option.short_name << ", --" << option.name << "  " << option.description << endl;
   }
+
   cout << "  -h, --help  Display this help message" << endl;
   cout << "  -V, --version  Display this application version" << endl << endl;
-  size_t command_count = m_commands.size();
-  if (command_count > 0) {
+  if (m_commands.size() > 0) {
     cout << "Available Commands:" << endl << endl;
-    for (size_t index = 0; index < command_count; index++) {
-      Command command = m_commands[index];
+    for (Command command: m_commands) {
       cout << "  " << command.name << "  " << command.description << endl;
     }
   }
