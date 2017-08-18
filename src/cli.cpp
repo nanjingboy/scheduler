@@ -59,10 +59,12 @@ void Cli::write_crontab(const vector<string> & jobs, const string & user) {
   }
   filesystem::path crontab_tmp_path = filesystem::temp_directory_path() /= "crontab.tmp";
   ofstream ofs(crontab_tmp_path.string());
-  for (string job: jobs) {
-    ofs << job << endl;
+  if (ofs.is_open()) {
+    for (string job: jobs) {
+      ofs << job << endl;
+    }
+    ofs.close();
   }
-  ofs.close();
   process::system("sudo crontab -u " + user + " " + crontab_tmp_path.string());
   filesystem::remove(crontab_tmp_path);
 }
@@ -85,8 +87,10 @@ void Cli::init(const map<string, string> & option_values) {
   }
 
   ofstream ofs(path_string);
-  ofs << "[" << endl << "]" << endl;
-  ofs.close();
+  if (ofs.is_open()) {
+    ofs << "[" << endl << "]" << endl;
+    ofs.close();
+  }
   cout << "Initial file created: " << path_string << endl;
 }
 
